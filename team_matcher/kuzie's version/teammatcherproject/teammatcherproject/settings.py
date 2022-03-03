@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'teammatcherproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'matchmaker',
-        'USER':'kuzie',
-        'PASSWORD':'chen020905',
+        'NAME': 'team',
+        'USER':'postgres',
+        'PASSWORD':'MrVegains2810',
         'HOST':'',
         'PORT':'5432'
     }
