@@ -1,14 +1,10 @@
-{%extends "base.html"%} {% block content%}
-
-<body>
-    {%load widget_tweaks%}
-    <div class="container">
-        <h2>Search!</h2>
-        <h3>{{note}}</h3>
-        <form method=POST novalidate>
-            {% csrf_token %} {{search.as_p}}
-            <input type="submit" value="SEARCH" class=" btn btn-secondary">
-        </form>
+{%extends "base.html"%} {%load static%} {% block content%} {%load widget_tweaks%}
+<header class="masthead" style=background:url({%static 'img/AMA_EVERTON_LIVERPOOL_RJB_27.jpg'%})>
+    <div class=" container ">
+        <div class="intro-text ">
+            <div class="intro-lead-in "><span style="color: var(--bs-light);font-size: 45px;"><strong>Welcome To TeamMatcher</strong>r</span></div>
+            <div class="intro-heading text-uppercase "></div>
+        </div>
     </div>
-</body>
+</header>
 {%endblock%}

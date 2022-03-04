@@ -3,7 +3,7 @@ from django.shortcuts import render
 from.forms import searchdetail
 from.models import User
 # Create your views here.
-def home (request):
+def search (request):
     if request.method == 'POST':
         filled_form = searchdetail(request.POST)
         if filled_form.is_valid():
@@ -11,7 +11,10 @@ def home (request):
             mode = sports.filter(mode=filled_form.cleaned_data['mode'])
             note ='search for %s at %s area is successful' %(filled_form.cleaned_data['sport'], filled_form.cleaned_data['postcode'],)
             new_form=searchdetail()
-            return render(request,'search.html',{'sports':sports ,'note':note,'mode':mode})
+            return render(request,'searchresult.html',{'sports':sports ,'note':note,'mode':mode})
     sport = searchdetail(); 
-    return render(request,'home.html',{'search':sport})
+    return render(request,'search.html',{'search':sport})
+
+def home(request):
+    return render(request,'home.html')
 

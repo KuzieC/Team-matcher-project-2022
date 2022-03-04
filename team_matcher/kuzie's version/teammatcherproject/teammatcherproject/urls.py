@@ -20,4 +20,7 @@ from teammatcherapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home),
+    path('search/',views.search),
+    path('home/search/',views.search),
+    path('home/',views.home),
 ]
