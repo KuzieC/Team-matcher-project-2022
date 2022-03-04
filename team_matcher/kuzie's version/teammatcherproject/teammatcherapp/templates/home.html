@@ -12,24 +12,31 @@
     <title>Team Matcher</title>
 
     <style>
-        body {background-color: black;}
-        h1   {
+        body {
+            background-color: black;
+        }
+        
+        h1 {
             color: white;
             text-align: center;
         }
-        h2   {
+        
+        h2 {
             color: white;
             text-align: center;
         }
-        h3   {
+        
+        h3 {
             color: white;
             text-align: center;
         }
-        div   {
+        
+        div {
             color: white;
             text-align: center;
         }
-        p    {
+        
+        p {
             color: white;
             text-align: center;
         }
@@ -46,16 +53,12 @@
         <br><br>
         <h3>{{note}}</h3>
         <br><br>
-        <form method="post" novalidate>
-            {% csrf_token %}
+        <form method=POST novalidate>
+            {% csrf_token %} {{search.as_p}}
 
-            <div class="form-group">
 
-                {{search}}
-
-            </div>
             <br><br>
-            <input type="submit" value="SEARCH">
+            <input type="submit" value="SEARCH" class=" btn btn-secondary">
         </form>
     </div>
     <!-- Optional JavaScript; choose one of the two! -->

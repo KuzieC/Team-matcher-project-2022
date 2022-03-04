@@ -8,9 +8,10 @@ def home (request):
         filled_form = searchdetail(request.POST)
         if filled_form.is_valid():
             sports = User.objects.filter(sport=filled_form.cleaned_data['sport'])
+            mode = User.objects.filter(mode=filled_form.cleaned_data['modes'])
             note ='search for %s at %s area is successful' %(filled_form.cleaned_data['sport'], filled_form.cleaned_data['postcode'],)
             new_form=searchdetail()
-            return render(request,'search.html',{'sports':sports ,'note':note})
+            return render(request,'search.html',{'sports':sports ,'note':note,'mode':mode})
     sport = searchdetail(); 
     return render(request,'home.html',{'search':sport})
 
