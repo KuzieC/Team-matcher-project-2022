@@ -3,7 +3,7 @@ from django import forms
 from.models import User
 class searchdetail(forms.ModelForm):
      modeselect = (('team','team'),('teammember','teammember'),('solo','solo'))
-     modes = forms.ChoiceField(choices = modeselect,widget=forms.RadioSelect)
+     mode = forms.ChoiceField(choices = modeselect,widget=forms.RadioSelect)
      class Meta: 
          model = User
          fields = ['sport','postcode']
