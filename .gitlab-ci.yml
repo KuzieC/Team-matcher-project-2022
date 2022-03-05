@@ -43,7 +43,7 @@ default:
   # Only needed when using a docker container to run your tests in.
   # Check out: http://docs.gitlab.com/ee/ci/docker/using_docker_images.html#what-is-a-service
   services:
-    - postgres:11.7
+    - mypostgres:11.7
   #
   # This folder is cached between builds
   # http://docs.gitlab.com/ee/ci/yaml/README.html#cache
