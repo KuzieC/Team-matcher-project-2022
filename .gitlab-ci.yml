@@ -1,33 +1,76 @@
-test:
+# This example is for testing Django with MySQL.
+#
+# The test CI/CD variables MYSQL_DB, MYSQL_USER and MYSQL_PASS can be set in the project settings at:
+#     Settings --> CI/CD --> Variables
+#
+# The Django settings in settings.py, used in tests, might look similar to:
+#
+#  DATABASES = {
+#      'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': os.environ.get('MYSQL_DATABASE'),
+#        	'USER':  os.environ.get('MYSQL_USER'),
+#        	'PASSWORD': os.environ.get('MYSQL_PASSWORD'),
+#       	'HOST': 'mysql',
+#     	  'PORT': '3306',
+#         'CONN_MAX_AGE':60,
+#      },
+#  }
+#
+# It is possible to use '--settings' to specify a custom settings file on the command line below or use an environment
+# variable to trigger an include on the bottom of your settings.py:
+#   if os.environ.get('DJANGO_CONFIG')=='test':
+#       from .settings_test import *
+#
+# It is also possible to hardcode the database name and credentials in the settings.py file and in the .gitlab-ci.yml file.
+#
+# The mysql service needs some variables too. See https://hub.docker.com/_/mysql for possible mysql env variables
+# Note that when using a service in GitLab CI/CD that needs environment variables to run, only variables defined in
+# .gitlab-ci.yml are passed to the service and variables defined in the GitLab UI are not.
+# https://gitlab.com/gitlab-org/gitlab/-/issues/30178
+
+variables:
+  # DJANGO_CONFIG: "test"
+  MYPOSTGRES_DATABASE: $team
+  MYPOSTGRES_ROOT_PASSWORD: $chen020905
+  MYPOSTGRES_USER: $kuzie
+  MYPOSTGRES_PASSWORD: $chen020905
+
+default:
+  image: ubuntu:20.04
+  #
+  # Pick zero or more services to be used on all builds.
+  # Only needed when using a docker container to run your tests in.
+  # Check out: http://docs.gitlab.com/ee/ci/docker/using_docker_images.html#what-is-a-service
   services:
-  - postgres:alpine
-  variables:
-    POSTGRES_DB: custom_db
-    POSTGRES_USER: custom_user
-    POSTGRES_PASSWORD: custom_pass
-  script:
-  - export DATABASE_URL=postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres:5432/$POSTGRES_DB
-  - apt-get update -qy
-  - apt-get install -y python-dev python-pip
-  - pip install -r requirements.txt
-  - python manage.py test
+    - postgres:11.7
+  #
+  # This folder is cached between builds
+  # http://docs.gitlab.com/ee/ci/yaml/README.html#cache
+  cache:
+    paths:
+      - ~/.cache/pip/
+  before_script:
+    - apt -y update
+    - apt -y install apt-utils
+    - apt -y install net-tools python3.8 python3-pip mypostgres-client libmypostgresclient-dev
+    - apt -y upgrade
+    - pip3 install -r requirements.txt
 
-staging:
-  type: deploy
-  script:
-  - apt-get update -qy
-  - apt-get install -y ruby-dev
-  - gem install dpl
-  - dpl --provider=heroku --app=$HEROKU_STAGING_APP --api-key=$HEROKU_STAGING_API_KEY --skip-cleanup
-  only:
-  - master
 
-production:
-  type: deploy
+migrations:
+  stage: build
   script:
-  - apt-get update -qy
-  - apt-get install -y ruby-dev
-  - gem install dpl
-  - dpl --provider=heroku --app=$HEROKU_PRODUCTION_APP --api-key=$HEROKU_PRODUCTION_API_KEY --skip-cleanup
-  only:
-  - tags
+    - python3 manage.py makemigrations
+    # - python3 manage.py makemigrations myapp
+    - python3 manage.py migrate
+    - python3 manage.py check
+
+
+django-tests:
+  stage: test
+  script:
+    # The MYSQL user only gets permissions for MYSQL_DB, so Django can't create a test database.
+    - echo "GRANT ALL on *.* to '${POSTGRES_USER}';"| mypostgres -u root --password="${MYPOSTGRES_ROOT_PASSWORD}" -h mypostgres
+    # use python3 explicitly. see https://wiki.ubuntu.com/Python/3
+    - python3 manage.py test
