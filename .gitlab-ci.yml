@@ -37,7 +37,7 @@ variables:
   MYPOSTGRES_PASSWORD: $chen020905
 
 default:
-  image: ruby:2.6
+  image: ubuntu:20.04
   #
   # Pick zero or more services to be used on all builds.
   # Only needed when using a docker container to run your tests in.
