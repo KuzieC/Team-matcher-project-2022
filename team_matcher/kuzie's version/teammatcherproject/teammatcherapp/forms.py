@@ -2,7 +2,7 @@ from random import choice
 from django import forms
 from.models import User
 class searchdetail(forms.ModelForm):
-     modeselect = (('team','team'),('teammember','teammember'),('solo','solo'))
+     modeselect = (('team','team'),('teammember','teammember'),('compete','compete'))
      mode = forms.ChoiceField(choices = modeselect,widget=forms.RadioSelect)
      class Meta: 
          model = User
@@ -10,4 +10,4 @@ class searchdetail(forms.ModelForm):
      #     labels = {'sport':'sports','postcode':'postcode'}
     
      postcode = forms.CharField(label = "postcode ",max_length=10)
-     sport = forms.ChoiceField(label="sport",choices=[('football','football'),('baseball','baseball'),('rugby','rugby'),('tennis','tennis'),('dance','dance'),('swimming','swimming')])
+     sport = forms.ChoiceField(label="sport",choices=[('football','football'),('baseball','baseball'),('rugby','rugby'),('tennis','tennis'),('dance','dance'),('swimming','swimming'),('running','running')])
