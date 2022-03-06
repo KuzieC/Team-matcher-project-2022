@@ -1,7 +1,9 @@
 from textwrap import fill
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from.forms import searchdetail
 from.models import User
+from .forms import RegisterForm
+
 # Create your views here.
 def search (request):
     if request.method == 'POST':
@@ -20,4 +22,22 @@ def home(request):
 
 def gdpr(request):
     return render(request,'gdpr.html')
+
+def shop(request):
+    return render(request,'shop.html')
+
+def leaderboard(request):
+    return render(request,'leaderboard.html')
+
+def register(response):
+    if response.method == "POST":
+        form = RegisterForm(response.POST)
+        if form.is_valid():
+            form.save()
+        return redirect("/home")
+    else:
+        form = RegisterForm()
+    return render(response, "register.html", {"form":form})
+
+
 

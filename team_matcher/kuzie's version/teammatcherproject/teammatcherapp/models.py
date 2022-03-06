@@ -14,6 +14,7 @@ class User(models.Model):
     mode = models.CharField(max_length = 30, default = "", unique= False)
     # #picture = models.ImageField()
    
+
 # class Mode(models.Model):
 #     title = models.CharField(max_length=10)
 #     def __str__(self):

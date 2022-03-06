@@ -24,4 +24,7 @@ urlpatterns = [
     path('home/search/',views.search),
     path('home/',views.home),
     path('gdpr/',views.gdpr),
+    path('shop/',views.shop),
+    path('leaderboard/',views.leaderboard),
+    path('register/',views.register, name="register"),
 ]
