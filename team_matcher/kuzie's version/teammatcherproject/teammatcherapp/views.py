@@ -18,3 +18,6 @@ def search (request):
 def home(request):
     return render(request,'home.html')
 
+def gdpr(request):
+    return render(request,'gdpr.html')
+

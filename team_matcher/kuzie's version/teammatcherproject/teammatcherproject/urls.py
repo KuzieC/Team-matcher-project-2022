@@ -23,4 +23,5 @@ urlpatterns = [
     path('search/',views.search),
     path('home/search/',views.search),
     path('home/',views.home),
+    path('gdpr/',views.gdpr),
 ]
