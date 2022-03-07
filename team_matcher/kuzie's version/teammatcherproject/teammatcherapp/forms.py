@@ -26,8 +26,8 @@ class RegisterForm(forms.ModelForm):
         fields = ['name','postcode','gender','phone','age','sport','experience','username','password']
         
     sport = forms.ChoiceField(label="Sport",choices=[('football','football'),('baseball','baseball'),('rugby','rugby'),('tennis','tennis'),('dance','dance'),('swimming','swimming'),('running','running')])
-    experience = forms.ChoiceField(label="Experience",choices=[('beginner','beginner'),('intermediate','intermediate'),('professional','professional')])
-    gender = forms.ChoiceField(label="Gender",choices=[('Male','Male'),('Female','Female')])
+    experience = forms.ChoiceField(label="Experience",choices=[('beginner','beginner'),('intermediate','intermediate'),('advanced','advanced')])
+    gender = forms.ChoiceField(label="Gender",choices=[('M','Male'),('F','Female')])
 
 # class RegisterForm(UserCreationForm):
 

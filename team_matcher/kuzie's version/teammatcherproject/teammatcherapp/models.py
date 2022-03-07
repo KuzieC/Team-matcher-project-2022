@@ -9,7 +9,7 @@ class User(models.Model):
     age = models.IntegerField(null=False)
     sport = models.CharField(max_length = 30, default = "", unique= False)
     experience = models.CharField(max_length = 30, default = "begginer", unique= False) 
-    username = models.CharField(max_length = 30, default = "", unique= False)
+    username = models.CharField(max_length = 30, default = "", unique= True)
     password = models.CharField(max_length = 30, default = "", unique= False)
     mode = models.CharField(max_length = 30, default = "", unique= False)
     # #picture = models.ImageField()
