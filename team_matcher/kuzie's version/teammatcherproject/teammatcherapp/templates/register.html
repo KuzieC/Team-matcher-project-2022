@@ -1,6 +1,4 @@
-{%extends "base.html"%}
-{% block title %}Create an Account{% endblock %}
-{% load crispy_forms_tags %}
+{%extends "base.html"%} {% block title %}Create an Account{% endblock %} {% load crispy_forms_tags %}
 
 <style>
     #wrap {
@@ -10,29 +8,38 @@
         text-align: left;
         margin-left: 100px;
     }
-
+    
     #con {
         float: left;
         position: relative;
         left: -50%;
         text-align: left;
     }
-
+    
     form {
-        margin-left;100px;
+        margin-left;
+        100px;
         text-align: left;
     }
 </style>
 
 {% block content %}
-    <br><br><br><br> <br><br>
-    <div id="wrap">
-        <div id ="con">
-            <form method="POST" class="form-group">
-            {% csrf_token %}
-            {{ form|crispy }}
+<br><br><br><br> <br><br>
+<div id="wrap">
+    <div id="con">
+        <h1>REGISTER</h1>
+        <br><br>
+        <form method="POST">
+
+            {% csrf_token %} {{ form.as_p}}
+            <a href="/gdpr/" target="_blank">
+                <label><input type="checkbox" name="" value="1"> please agree to our privacy policy</label>
+            </a>
+            <br>
+            <br>
+            <br>
             <button type="submit" class="btn btn-success">Register</button>
-            </form>
-        </div>
+        </form>
     </div>
+</div>
 {% endblock %}

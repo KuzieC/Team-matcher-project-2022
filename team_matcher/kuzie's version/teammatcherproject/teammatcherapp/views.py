@@ -1,4 +1,5 @@
 from textwrap import fill
+from urllib import request
 from django.shortcuts import render, redirect
 from.forms import searchdetail
 from.models import User
@@ -31,9 +32,20 @@ def leaderboard(request):
 
 def register(response):
     if response.method == "POST":
-        form = RegisterForm(response.POST)
-        if form.is_valid():
-            form.save()
+        # form = RegisterForm(response.POST)
+        
+        name = response.POST['name']
+        postcode = response.POST['postcode']
+        gender = response.POST['gender']
+        phone = response.POST['phone']
+        age = response.POST['age']
+        sport = response.POST['sport']
+        experience = response.POST['experience']
+        username = response.POST['username']
+        password = response.POST['password']
+        mode = response.POST['mode']
+        user = User(name = name ,postcode = postcode,gender = gender,phone = phone,age = age , sport = sport,experience = experience,username = username,password= password,mode = mode)
+        user.save()
         return redirect("/home")
     else:
         form = RegisterForm()

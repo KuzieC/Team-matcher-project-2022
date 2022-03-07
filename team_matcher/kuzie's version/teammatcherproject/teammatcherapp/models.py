@@ -2,11 +2,11 @@ from django.db import models
 
 # Create your models here.
 class User(models.Model):
-    name = models.CharField(max_length = 30, default = "name", unique= False)
+    name = models.CharField(max_length = 30, default = "", unique= False)
     postcode = models.CharField(max_length = 10, default = "", unique = False)
-    gender = models.CharField(max_length = 1, default = "M", unique= False)
+    gender = models.CharField(max_length = 10, default = "", unique= False)
     phone = models.CharField(max_length = 15, default = "", unique= False)
-    age = models.IntegerField(null=False, default= 20)
+    age = models.IntegerField(null=False)
     sport = models.CharField(max_length = 30, default = "", unique= False)
     experience = models.CharField(max_length = 30, default = "begginer", unique= False) 
     username = models.CharField(max_length = 30, default = "", unique= False)
