@@ -10,8 +10,8 @@ test:
   before_script:
     - pip install -r team_matcher/requirements.txt -v # install pip packages required by our project
     - python3 team_matcher/kuzie\'s\ version/teammatcherproject/manage.py collectstatic --settings=team_matcher/kuzie\'s\ version/teammatcherproject/teammatcherproject.local 
-    - python3 manage.py makemigrations Heroes --settings=team_matcher/kuzie\'s\ version/teammatcherproject/teammatcherproject.local 
-    - python3 manage.py migrate --settings=team_matcher/kuzie\'s\ version/teammatcherproject/teammatcherproject.local
-    - python3 manage.py createsuperuser --noinput --username admin --email $EMAIL --settings=team_matcher/kuzie\'s\ version/teammatcherproject/teammatcherproject.local
+    - python3 team_matcher/kuzie\'s\ version/teammatcherproject/manage.py makemigrations teammatcherapp --settings=team_matcher/kuzie\'s\ version/teammatcherproject/teammatcherproject.local 
+    - python3 team_matcher/kuzie\'s\ version/teammatcherproject/manage.py migrate --settings=team_matcher/kuzie\'s\ version/teammatcherproject/teammatcherproject.local
+    - python3 team_matcher/kuzie\'s\ version/teammatcherproject/manage.py createsuperuser --noinput --username admin --email $EMAIL --settings=team_matcher/kuzie\'s\ version/teammatcherproject/teammatcherproject.local
   script:
     - echo "run the tests here"
