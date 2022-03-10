@@ -1,7 +1,7 @@
 image: python:latest
 
 variables:
-  PROJECT_DIR: "teammatcherproject" # location of settings.py
+  PROJECT_DIR: "team_matcher/kuzie\'s\ version/teammatcherproject/teammatcherproject" # location of settings.py
   #assumption- PROJECT_DIR is also the name of the manage.py location
   DOMAIN: "teammatch.bham.team" # the DNS A record must point to the ip of $UBUNTU_SERVER 
   EMAIL: "admin@$DOMAIN"
