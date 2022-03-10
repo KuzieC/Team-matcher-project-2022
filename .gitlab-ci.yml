@@ -1,10 +1,17 @@
-stages:
-- test
-- deploy
-app-import:
-  image: python:3
-  stage: test
+image: python:latest
+
+variables:
+  PROJECT_DIR: "teammatcherproject" # location of settings.py
+  #assumption- PROJECT_DIR is also the name of the manage.py location
+  DOMAIN: "teammatch.bham.team" # the DNS A record must point to the ip of $UBUNTU_SERVER 
+  EMAIL: "admin@$DOMAIN"
+
+test:
   before_script:
-    - pip install -r requirements.txt
+    - pip install -r requirements.txt -v # install pip packages required by our project
+    - python3 manage.py collectstatic --settings=teammatcherproject.local 
+    - python3 manage.py makemigrations Heroes --settings=teammatcherproject.local 
+    - python3 manage.py migrate --settings=teammatcherproject.local
+    - python3 manage.py createsuperuser --noinput --username admin --email $EMAIL --settings=SuperDjangoApp.local
   script:
-    - python -c "import app"
+    - echo "run the tests here"
