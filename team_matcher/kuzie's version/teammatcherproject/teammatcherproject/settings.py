@@ -9,23 +9,32 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import environ
 import os
 from pathlib import Path
 
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# read environment variables from '.env'
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o10&ocyl!#799lmdzzw#t)a%=c5!y4=$si^k+pcsfmhtwt2q9!'
+# let's move to a real secret key (avoid keys with # or $)
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -78,12 +87,12 @@ WSGI_APPLICATION = 'teammatcherproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'team',
-        'USER':'postgres',
-        'PASSWORD':'',
-        'HOST':'',
-        'PORT':'5432'
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': env('DATABASE_NAME'), 
+        'USER': env('DATABASE_USER'), 
+        'PASSWORD': env('DATABASE_PASS'),
+        'HOST': env('DATABASE_HOST'), 
+        'PORT': '5432',
     }
 }
 
@@ -122,7 +131,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/root/'
 STATIC_ROOT = os.path.join(BASE_DIR,'root')
 STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
 

@@ -1,10 +1,17 @@
-stages:
-- test
-- deploy
-app-import:
-  image: python:3
-  stage: test
+image: python:latest
+
+variables:
+  PROJECT_DIR: "team_matcher/kuzie\'s\ version/teammatcherproject/teammatcherproject" # location of settings.py
+  #assumption- PROJECT_DIR is also the name of the manage.py location
+  DOMAIN: "teammatch.bham.team" # the DNS A record must point to the ip of $UBUNTU_SERVER 
+  EMAIL: "admin@$DOMAIN"
+
+test:
   before_script:
-    - pip install -r requirements.txt
+    - pip install -r team_matcher/requirements.txt -v # install pip packages required by our project
+    - python3 team_matcher/kuzie\'s\ version/teammatcherproject/manage.py collectstatic --settings=team_matcher/kuzie\'s\ version/teammatcherproject/teammatcherproject.local 
+    - python3 team_matcher/kuzie\'s\ version/teammatcherproject/manage.py makemigrations teammatcherapp --settings=team_matcher/kuzie\'s\ version/teammatcherproject/teammatcherproject.local 
+    - python3 team_matcher/kuzie\'s\ version/teammatcherproject/manage.py migrate --settings=team_matcher/kuzie\'s\ version/teammatcherproject/teammatcherproject.local
+    - python3 team_matcher/kuzie\'s\ version/teammatcherproject/manage.py createsuperuser --noinput --username admin --email $EMAIL --settings=team_matcher/kuzie\'s\ version/teammatcherproject/teammatcherproject.local
   script:
-    - python -c "import app"
+    - echo "run the tests here"
