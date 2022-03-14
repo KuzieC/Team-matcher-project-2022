@@ -9,7 +9,7 @@ variables:
 test:
   before_script:
     - pip install -r requirements.txt -v # install pip packages required by our project
-    - python3 manage.py collectstatic --settings=teammatcherproject.local 
+    #- python3 manage.py collectstatic --settings=teammatcherproject.local 
     - python3 manage.py makemigrations teammatcherapp --settings=teammatcherproject.local 
     - python3 manage.py migrate --settings=teammatcherproject.local
     - python3 manage.py createsuperuser --noinput --username admin --email $EMAIL --settings=teammatcherproject.local
