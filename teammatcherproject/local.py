@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'team',
         'USER':'postgres',
         'PASSWORD':'',
-        'HOST':'',
+        'HOST':'Toyosis-MacBook-Pro.local',
         'PORT':'5434'
     }
 }
