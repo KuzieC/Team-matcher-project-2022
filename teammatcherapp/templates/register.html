@@ -1,0 +1,49 @@
+{%extends "base.html"%} {% block title %}Create an Account{% endblock %} {% load crispy_forms_tags %}
+
+<style>
+    #wrap {
+        float: left;
+        position: relative;
+        left: 50%;
+        text-align: left;
+        
+    }
+    
+    #con {
+        float: left;
+        position: relative;
+        left: -50%;
+        text-align: left;
+    }
+    
+    form {
+        text-align: left;
+    }
+    p {
+        text-align: left;
+    }
+    label {
+        text-align: left;
+    }
+    button {
+        text-align: left;
+    }
+</style>
+
+{% block content %}
+<br><br><br><br> <br><br>
+<h1>REGISTER</h1>
+<br><br>
+<div id="wrap">
+    <div id="con">
+        <form method="POST">
+            {% csrf_token %} {{ form.as_p}} 
+            <label><input type="checkbox" name="" value="1">   agree to our privacy policy to continue</label>
+            <br>
+            <p><a class="nav-link" href="/gdpr/" target="_blank">click here to read our privacy policy</a></p>
+            <br>
+            <button type="submit" class="btn btn-success" style = "text-align:left">Register</button>  
+    </form>          
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{%extends "base.html"%} {% block content%}
+
+<style>
+    #wrap {
+        float: left;
+        position: relative;
+        left: 50%;
+        text-align: left;
+    }
+
+    #content {
+        float: left;
+        position: relative;
+        left: -50%;
+        text-align: left;
+    }
+</style>
+
+<body style="background-color:black;">
+
+    <h1>Search</h1>
+    <br><br><br>
+    <h3>{{note}}</h3>
+    <br>
+    <ul style="color: white">
+        <div id="wrap">
+            <div id ="content">
+                {%for sport in mode%}
+                <h3 style ="text-align:left; display:inline;">{{sport.name}}   </h3>
+                {%if sport.gender == "M"%}
+                <p style ="text-align:left; display:inline;">   Male, {{sport.age}}</p>
+                {%endif %}
+                {%if sport.gender == "F"%}
+                <p style ="text-align:left; display:inline;">   Female, {{sport.age}}</p>
+                {%endif %}
+                <p style ="text-align:left">Phone: {{sport.phone}}</p>
+                <p style ="text-align:left">Experience Level: {{sport.experience}}</p>
+                <p style ="text-align:left">Location: {{sport.postcode}}</p>
+                <br>
+                {%endfor%}
+            </div>
+        </div>
+    </ul>
+
+
+</body>
+{%endblock%}
