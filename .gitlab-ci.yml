@@ -15,3 +15,14 @@ test:
     - python3 manage.py createsuperuser --noinput --username admin --email $EMAIL --settings=teammatcherproject.local
   script:
     - echo "run the tests here"
+
+
+artifact:
+  script:
+    - echo "creating artifact"    
+  artifacts:
+    name: "team41-21"
+    paths:
+      - $CI_PROJECT_DIR
+    exclude:
+      - $CI_PROJECT_DIR/deploy/*
