@@ -5,12 +5,15 @@ After=network.target
 
 [Service]
 User=root
-Group=www -data
-WorkingDirectory =/root/$PROJECT_DIR
+Group=www-data
+WorkingDirectory=/root/$PROJECT_DIR
 ExecStart=gunicorn \
-	  --access -logfile - \
+          --access-logfile /var/log/gunicorn/access.log \
+          --error-logfile /var/log/gunicorn/error.log \
           --workers 3 \
+          --capture-output --log-level debug \
           --bind unix:/run/gunicorn.sock \
           $PROJECT_DIR.wsgi:application
+
 [Install]
-WantedBy=multi -user.target
+WantedBy=multi-user.target
