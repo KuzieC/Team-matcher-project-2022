@@ -1,0 +1,16 @@
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=root
+Group=www -data
+WorkingDirectory =/root/$PROJECT_DIR
+ExecStart=gunicorn \
+	  --access -logfile - \
+          --workers 3 \
+          --bind unix:/run/gunicorn.sock \
+          $PROJECT_DIR.wsgi:application
+[Install]
+WantedBy=multi -user.target
