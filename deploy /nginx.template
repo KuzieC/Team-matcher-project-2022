@@ -1,0 +1,26 @@
+server {
+    server_name $DOMAIN www.$DOMAIN;
+    listen 443 ssl;
+    # RSA certificate
+    ssl_certificate /etc/letsencrypt/live/$DOMAIN/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/$DOMAIN/privkey.pem;
+
+    include /etc/letsencrypt/options -ssl -nginx.conf;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /root/ {
+        root /root/$PROJECT_DIR /;
+    }
+    location / {
+         include proxy_params;
+         proxy_pass http :// unix:/run/gunicorn.sock;
+    } 
+}
+#redirect all http requests to https
+server {
+    listen 80 default_server;
+
+    server_name _;
+
+    return 301 https :// $DOMAIN; #updated: bug with envsubst
+}
