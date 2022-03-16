@@ -92,7 +92,7 @@ DATABASES = {
         'USER': env('DATABASE_USER'), 
         'PASSWORD': env('DATABASE_PASS'),
         'HOST': env('DATABASE_HOST'), 
-        'PORT': '5434',
+        'PORT': '5432',
     }
 }
 
