@@ -2,7 +2,7 @@ create user $DATABASE_USER;
 
 create database $DATABASE_NAME;
 
-alter role $DATABASE_USER with password ’$DATABASE_PASS’;
+alter role $DATABASE_USER with password $DATABASE_PASS;
 
 grant all privileges on database $DATABASE_NAME to $DATABASE_USER;
 
