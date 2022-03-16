@@ -42,7 +42,7 @@ deploy:
 #postgres
     - ssh root@$UBUNTU_SERVER "pg_isready -h localhost -p 5432 || (apt update && apt install -y postgresql postgresql-contrib && service postgresql restart)"
     - apt update && apt install -y gettext-base
-    - envsubst < deploy/db.template > deploy/deploy/db.create.script
+    - envsubst < deploy/db.template > deploy/db.create.script
     - scp deploy/db.create.script root@$UBUNTU_SERVER:/tmp/db.create.script
     - ssh root@$UBUNTU_SERVER "cd /tmp && sudo -u postgres psql -f /tmp/db.create.script"
 #scp project
