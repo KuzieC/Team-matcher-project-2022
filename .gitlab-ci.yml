@@ -3,7 +3,7 @@ image: python:latest
 variables:
   PROJECT_DIR: "teammatcherproject" # location of settings.py
   #assumption- PROJECT_DIR is also the name of the manage.py location
-  DOMAIN: "teammatch.bham.team" # the DNS A record must point to the ip of $UBUNTU_SERVER 
+  DOMAIN: "teammatcher.bham.team" # the DNS A record must point to the ip of $UBUNTU_SERVER 
   EMAIL: "admin@$DOMAIN"
 
 test:
@@ -26,3 +26,41 @@ artifact:
       - $CI_PROJECT_DIR
     exclude:
       - $CI_PROJECT_DIR/deploy/*
+deploy:
+  before_script:
+    - 'command -v ssh-agent >/dev/null || (apt install -y openssh)' 
+    - eval $(ssh-agent -s)
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-add 
+    - echo "Host $UBUNTU_SERVER" >> ~/.ssh/config
+    - echo "    StrictHostKeyChecking no" >> ~/.ssh/config
+    - chmod 400 ~/.ssh/config
+    - ssh root@$UBUNTU_SERVER "ufw allow ssh"
+#postgres
+    - ssh root@$UBUNTU_SERVER "pg_isready -h localhost -p 5432 || (apt update && apt install -y postgresql postgresql-contrib && service postgresql restart)"
+    - apt update && apt install -y gettext-base
+    - envsubst < deploy/db.template > deploy/db.create.script
+    - scp deploy/db.create.script root@$UBUNTU_SERVER:/tmp/db.create.script
+    - ssh root@$UBUNTU_SERVER "cd /tmp && sudo -u postgres psql -f /tmp/db.create.script"
+#scp project
+    - ssh root@$UBUNTU_SERVER "rm -rf ~/$PROJECT_DIR/"
+    - envsubst < deploy/env.template > $PROJECT_DIR/.env
+    - scp -r $(pwd) root@$UBUNTU_SERVER:~/$PROJECT_DIR/
+    - ssh root@$UBUNTU_SERVER "apt update && apt install -y python3-pip && cd $PROJECT_DIR && pip install -r requirements.txt && python3 manage.py collectstatic --noinput && python3 manage.py makemigrations teammatcherapp && python3 manage.py migrate"
+    - ssh root@$UBUNTU_SERVER "cd $PROJECT_DIR && source $PROJECT_DIR/.env  && (python3 manage.py createsuperuser --noinput --username admin --email $EMAIL || true)"
+#gunicorn
+    - envsubst < deploy/gunicorn.service.template > deploy/gunicorn.service
+    - scp deploy/gunicorn.socket deploy/gunicorn.service root@$UBUNTU_SERVER:/etc/systemd/system/
+    - ssh root@$UBUNTU_SERVER "mkdir -p /var/log/gunicorn && systemctl enable --now gunicorn.socket && systemctl daemon-reload && systemctl restart gunicorn"
+#nginx and letsencrypt
+    - ssh root@$UBUNTU_SERVER "test -d /etc/nginx/ || ( apt update && apt install -y nginx && systemctl restart nginx && ufw allow 'Nginx Full')"
+    - ssh root@$UBUNTU_SERVER "test -d /etc/letsencrypt/live/$DOMAIN || ( apt update && apt install -y python3-certbot-nginx && certbot --nginx -d $DOMAIN -d www.$DOMAIN --non-interactive --agree-tos -m $EMAIL )"
+# https nginx
+    - envsubst < deploy/nginx.template > deploy/$PROJECT_DIR 
+    - scp deploy/$PROJECT_DIR root@$UBUNTU_SERVER:/etc/nginx/sites-available/
+    - ssh root@$UBUNTU_SERVER "rm -f /etc/nginx/sites-enabled/* && ln -s /etc/nginx/sites-available/$PROJECT_DIR /etc/nginx/sites-enabled/$PROJECT_DIR && systemctl restart nginx && ufw allow 'Nginx Full' && chmod +x+r -R /root/"
+  script:
+    - echo "now open the server at http://$UBUNTU_SERVER or if we have https https://$DOMAIN"
