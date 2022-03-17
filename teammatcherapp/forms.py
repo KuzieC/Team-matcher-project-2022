@@ -5,6 +5,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User as u
 
+
+
 class searchdetail(forms.ModelForm):
      modeselect = (('team','team'),('teammember','teammember'),('compete','compete'))
      mode = forms.ChoiceField(choices = modeselect,widget=forms.RadioSelect)
@@ -13,7 +15,7 @@ class searchdetail(forms.ModelForm):
          fields = ['sport','postcode']
      #     labels = {'sport':'sports','postcode':'postcode'}
     
-     #postcode = forms.CharField(label = "postcode ",max_length=10)
+     postcode = forms.CharField(label = "postcode ",max_length=10)
      sport = forms.ChoiceField(label="sport",choices=[('football','football'),('baseball','baseball'),('rugby','rugby'),('tennis','tennis'),('dance','dance'),('swimming','swimming'),('running','running')])
 
 class RegisterForm(forms.ModelForm):
