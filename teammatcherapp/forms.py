@@ -20,8 +20,8 @@ class searchdetail(forms.ModelForm):
      mode = forms.ChoiceField(label="mode",choices=[('team','team'),('teammember','teammember'),('compete','compete')])
 
 class RegisterForm(forms.ModelForm):
-    modeselect = (('team','team'),('teammember','teammember'),('compete','compete'))
-    mode = forms.ChoiceField(choices = modeselect,widget=forms.RadioSelect)
+    #modeselect = (('team','team'),('teammember','teammember'),('compete','compete'))
+    #mode = forms.ChoiceField(choices = modeselect,widget=forms.RadioSelect)
     class Meta: 
         model = User
         fields = ['name','postcode','gender','phone','age','sport','experience','username','password']
@@ -29,6 +29,7 @@ class RegisterForm(forms.ModelForm):
     sport = forms.ChoiceField(label="Sport",choices=[('football','football'),('baseball','baseball'),('rugby','rugby'),('tennis','tennis'),('dance','dance'),('swimming','swimming'),('running','running')])
     experience = forms.ChoiceField(label="Experience",choices=[('beginner','beginner'),('intermediate','intermediate'),('advanced','advanced')])
     gender = forms.ChoiceField(label="Gender",choices=[('M','Male'),('F','Female')])
+    mode = forms.ChoiceField(label="mode",choices=[('team','team'),('teammember','teammember'),('compete','compete')])
 
 # class RegisterForm(UserCreationForm):
 
