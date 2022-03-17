@@ -37,7 +37,7 @@
 <div id="wrap">
     <div id="con">
         <form method="POST">
-            {% csrf_token %} {{ form.as_table}} 
+            {% csrf_token %} {{ form.as_p}} 
             <label><input type="checkbox" name="" value="1">   agree to our privacy policy to continue</label>
             <br>
             <p><a class="nav-link" href="/gdpr/" target="_blank">click here to read our privacy policy</a></p>
