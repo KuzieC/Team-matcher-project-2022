@@ -4,11 +4,6 @@ from.models import User
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User as u
-.custom-radio-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
 
 class searchdetail(forms.ModelForm):
      modeselect = (('team','team'),('teammember','teammember'),('compete','compete'))
