@@ -14,7 +14,7 @@ class searchdetail(forms.ModelForm):
      #     labels = {'sport':'sports','postcode':'postcode'}
     
      #postcode = forms.CharField(label = "postcode ",max_length=10)
-     #sport = forms.ChoiceField(label="sport",choices=[('football','football'),('baseball','baseball'),('rugby','rugby'),('tennis','tennis'),('dance','dance'),('swimming','swimming'),('running','running')])
+     `sport = forms.ChoiceField(label="sport",choices=[('football','football'),('baseball','baseball'),('rugby','rugby'),('tennis','tennis'),('dance','dance'),('swimming','swimming'),('running','running')])
 
 class RegisterForm(forms.ModelForm):
     modeselect = (('team','team'),('teammember','teammember'),('compete','compete'))
