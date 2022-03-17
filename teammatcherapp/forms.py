@@ -5,15 +5,10 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User as u
 
-.custom-radio-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
 
 class searchdetail(forms.ModelForm):
      modeselect = (('team','team'),('teammember','teammember'),('compete','compete'))
-     mode = forms.ChoiceField(choices = modeselect,widget=forms.RadioSelect(attrs={'class': "custom-radio-list"}))
+     mode = forms.ChoiceField(choices = modeselect,widget=forms.RadioSelect)
      class Meta: 
          model = User
          fields = ['sport','postcode']
