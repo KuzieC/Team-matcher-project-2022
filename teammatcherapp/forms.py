@@ -12,7 +12,7 @@ from django.contrib.auth.models import User as u
 }
 
 class searchdetail(forms.ModelForm):
-     modeselect = (('teams','teams'),('teammember','teammember'),('compete','compete'))
+     modeselect = (('team','team'),('teammember','teammember'),('compete','compete'))
      mode = forms.ChoiceField(choices = modeselect,widget=forms.RadioSelect(attrs={'class': "custom-radio-list"}))
      class Meta: 
          model = User
