@@ -1,12 +1,17 @@
 image: python:latest
 
+stages:
+  - test
+  - deploy
+
 variables:
   PROJECT_DIR: "teammatcherproject" # location of settings.py
   #assumption- PROJECT_DIR is also the name of the manage.py location
   DOMAIN: "teammatcher.bham.team" # the DNS A record must point to the ip of $UBUNTU_SERVER 
   EMAIL: "admin@$DOMAIN"
 
-test:
+URL-testing: 
+  stage: test
   before_script:
     - pip install -r requirements.txt -v # install pip packages required by our project
     - python3 manage.py collectstatic --noinput --settings=teammatcherproject.local 
@@ -18,6 +23,7 @@ test:
     - echo "Test Passed!"
 
 
+
 artifact:
   script:
     - echo "creating artifact"    
@@ -27,7 +33,9 @@ artifact:
       - $CI_PROJECT_DIR
     exclude:
       - $CI_PROJECT_DIR/deploy/*
+
 deploy:
+  stage: deploy
   before_script:
     - 'command -v ssh-agent >/dev/null || (apt install -y openssh)' 
     - eval $(ssh-agent -s)
