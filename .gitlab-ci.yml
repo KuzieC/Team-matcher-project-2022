@@ -14,7 +14,8 @@ test:
     - python3 manage.py migrate --settings=teammatcherproject.local
     - python3 manage.py createsuperuser --noinput --username admin --email $EMAIL --settings=teammatcherproject.local
   script:
-    - echo "run the tests here"
+    - python3 manage.py test tests  --settings=teammatcherproject.local
+    - echo "Test Passed!"
 
 
 artifact:
