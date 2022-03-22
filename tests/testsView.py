@@ -21,7 +21,7 @@ class ViewTest(TestCase):
         self.assertEqual(count,4)
     
     def test_same_info(self):
-        user5 = User(name = 'Toyosi Olaribigbe',postcode ='SW17 62',gender = 'male',phone = '07746763532',age = 56,sport ='football',experience = 'intermediate',username = 'prime',password='appluice',mode = 'compete')
+        user5 = User(name = 'Toyosi Olaribigbe',postcode ='SW17 62',gender = 'male',phone = '07746763532',age = 56,sport ='football',experience =           'intermediate',username = 'prime',password='appluice',mode = 'compete')
         user5.save()
         one = User.objects.get(username ='prime')
         two = User.objects.get(username ='pro')
@@ -35,11 +35,7 @@ class ViewTest(TestCase):
         three = User.objects.get(name = 'Tom smith')
         self.assertEquals(two.name,'Toyosi Olaribigbe')
         self.assertEquals(one.postcode,'E9 B2S')
-        self.assertNotEquals(two.name,'price')
-        self.assertNotEquals(one.username,'Toyosi Olariigbe')
         self.assertNotEquals(one.name,two.name)
         self.assertEquals(two.postcode,'E9 6LG')
-        two.postcode = 'B29 6LG'
-        self.assertEquals(two.postcode,'B29 6LG')
         self.assertEquals(three.sport,'volleyball')
         self.assertEquals(three.phone,'07746763521')
