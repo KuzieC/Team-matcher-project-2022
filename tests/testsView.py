@@ -29,7 +29,7 @@ class ViewTest(TestCase):
         self.assertEquals(one.phone,two.phone)
         self.assertNotEquals(one.name,two.name)
    
-    def info_retained(self):
+    def test_info_retained(self):
         one = User.objects.get(name ='David Olaribigbe')
         two = User.objects.get(name ='Toyosi Olaribigbe')
         three = User.objects.get(name = 'Tom smith')
