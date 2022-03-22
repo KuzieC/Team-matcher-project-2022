@@ -19,9 +19,21 @@ URL-testing:
     - python3 manage.py migrate --settings=teammatcherproject.local
     - python3 manage.py createsuperuser --noinput --username admin --email $EMAIL --settings=teammatcherproject.local
   script:
-    - python3 manage.py test tests  --settings=teammatcherproject.local
+    - python3 manage.py test tests.testsURL  --settings=teammatcherproject.local
     - echo "Test Passed!"
 
+Form-testing: 
+  stage: test
+  script:
+    - python3 manage.py test tests.testsForm  --settings=teammatcherproject.local
+    - echo "Test Passed!"
+
+
+View-testing: 
+  stage: test
+  script:
+    - python3 manage.py test tests.testsView  --settings=teammatcherproject.local
+    - echo "Test Passed!"
 
 
 artifact:
