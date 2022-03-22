@@ -10,7 +10,7 @@ variables:
   DOMAIN: "teammatcher.bham.team" # the DNS A record must point to the ip of $UBUNTU_SERVER 
   EMAIL: "admin@$DOMAIN"
 
-URL-testing: 
+testing: 
   stage: test
   before_script:
     - pip install -r requirements.txt -v # install pip packages required by our project
@@ -20,20 +20,12 @@ URL-testing:
     - python3 manage.py createsuperuser --noinput --username admin --email $EMAIL --settings=teammatcherproject.local
   script:
     - python3 manage.py test tests.testsURL  --settings=teammatcherproject.local
-    - echo "Test Passed!"
-
-Form-testing: 
-  stage: test
-  script:
+    - echo "URL Tests Passed!"
     - python3 manage.py test tests.testsForm  --settings=teammatcherproject.local
-    - echo "Test Passed!"
-
-
-View-testing: 
-  stage: test
-  script:
+    - echo "Form Tests Passed!"
     - python3 manage.py test tests.testsView  --settings=teammatcherproject.local
-    - echo "Test Passed!"
+    - echo "View Tests Passed!"
+
 
 
 artifact:
