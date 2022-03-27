@@ -41,7 +41,6 @@ artifact:
       - $CI_PROJECT_DIR/teammatcherproject/__pycache__
       - $CI_PROJECT_DIR/teammatcherapp/__pycache__
 
-
 deploy:
   stage: deploy
   before_script:
