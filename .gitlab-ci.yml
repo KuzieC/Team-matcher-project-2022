@@ -47,11 +47,11 @@ artifact:
       - $CI_PROJECT_DIR/index.html
       - $CI_PROJECT_DIR/manage.py
     exclude:
-      - $CI_PROJECT_DIR/deploy/*
-      - $CI_PROJECT_DIR/git/*
+      - $CI_PROJECT_DIR/deploy/**
+      - $CI_PROJECT_DIR/git/**
       - $CI_PROJECT_DIR/teammatcherproject/__pycache__/*
       - $CI_PROJECT_DIR/teammatcherapp/__pycache__/*
-      - $CI_PROJECT_DIR/static/img/*
+      - $CI_PROJECT_DIR/static/img/**
 
 deploy:
   stage: deploy
