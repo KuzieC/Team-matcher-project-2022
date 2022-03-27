@@ -37,6 +37,7 @@ artifact:
       - $CI_PROJECT_DIR
     exclude:
       - $CI_PROJECT_DIR/deploy/*
+      - $CI_PROJECT_DIR/.git/*
 
 deploy:
   stage: deploy
