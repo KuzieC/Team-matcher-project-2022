@@ -34,7 +34,18 @@ artifact:
   artifacts:
     name: "team41-21"
     paths:
-      - $CI_PROJECT_DIR
+      - $CI_PROJECT_DIR/assets
+      - $CI_PROJECT_DIR/static
+      - $CI_PROJECT_DIR/teammatcherapp
+      - $CI_PROJECT_DIR/teammatcherproject
+      - $CI_PROJECT_DIR/tests
+      - $CI_PROJECT_DIR/venv
+      - $CI_PROJECT_DIR/.DS_Store
+      - $CI_PROJECT_DIR/.gitignore
+      - $CI_PROJECT_DIR/.gitlab-ci.yml
+      - $CI_PROJECT_DIR/db.sqlite3
+      - $CI_PROJECT_DIR/index.html
+      - $CI_PROJECT_DIR/manage.py
     exclude:
       - $CI_PROJECT_DIR/deploy/*
       - $CI_PROJECT_DIR/git/*
