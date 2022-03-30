@@ -3,7 +3,7 @@ from teammatcherapp import models
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
-            'postcode',
+            'city',
             'name',
             'gender',    
             'phone',

@@ -8,9 +8,9 @@ from teammatcherapp.models import User
 
 class Formtests(TestCase):
     def test_invalid_regform(self):
-         #one = User(name = 'David Olaribigbe',postcode ='E9 B2S',gender = 'Female' ,phone = '07745863521',age = 17 ,sport ='football',experience = 'advanced',username = 'price',password='paword')
+         #one = User(name = 'David Olaribigbe',city ='E9 B2S',gender = 'Female' ,phone = '07745863521',age = 17 ,sport ='football',experience = 'advanced',username = 'price',password='paword')
          #one = User.objects.get(name ='David Olaribigbe')
-         #data = {'name': one.name, 'postcode': one.postcode, 'gender': one.gender, 'phone': one.phone, 'age': one.age,'sport':one.sport,'experience':one.experience,'username':one.username,'password':one.password,'mode':one.mode}
+         #data = {'name': one.name, 'city': one.city, 'gender': one.gender, 'phone': one.phone, 'age': one.age,'sport':one.sport,'experience':one.experience,'username':one.username,'password':one.password,'mode':one.mode}
          response = self.client.post('/register/',data = {'name': 'David Olaribigbe', 'city': 'Birmingham', 'gender': 'Female', 'phone': '07745863521', 'age': 17,'sport': 'football','experience': 'advanced','username': 'price','password': 'paword','mode': 'team'})
          form = RegisterForm({'name': 'David', 'city': 'Birmingham', 'Gender': 'Female', 'phone': '07745863521', 'age': 17, 'Sport': 'football','Experience': 'advanced','username': 'price','password': 'paword','mode': 'team'})
          self.assertFalse(form.is_valid())
