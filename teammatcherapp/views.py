@@ -12,9 +12,10 @@ def search (request):
         if filled_form.is_valid():
             sports = User.objects.filter(sport=filled_form.cleaned_data['sport'])
             mode = sports.filter(mode=filled_form.cleaned_data['mode'])
-            note ='search results for %s near %s' %(filled_form.cleaned_data['sport'], filled_form.cleaned_data['postcode'],)
+            city = mode.filter(city=filled_form.cleaned_data['city'])
+            note ='search results for %s in %s' %(filled_form.cleaned_data['sport'], filled_form.cleaned_data['city'],)
             new_form=searchdetail()
-            return render(request,'searchresult.html',{'sports':sports ,'note':note,'mode':mode})
+            return render(request,'searchresult.html',{'sports':sports ,'note':note,'city':city})
     sport = searchdetail(); 
     return render(request,'search.html',{'search':sport})
 
@@ -33,9 +34,8 @@ def leaderboard(request):
 def register(response):
     if response.method == "POST":
         # form = RegisterForm(response.POST)
-        
         name = response.POST['name']
-        postcode = response.POST['postcode']
+        city = response.POST['city']
         gender = response.POST['gender']
         phone = response.POST['phone']
         age = response.POST['age']
@@ -44,7 +44,7 @@ def register(response):
         username = response.POST['username']
         password = response.POST['password']
         mode = response.POST['mode']
-        user = User(name = name ,postcode = postcode,gender = gender,phone = phone,age = age , sport = sport,experience = experience,username = username,password= password,mode = mode)
+        user = User(name = name ,city = city,gender = gender,phone = phone,age = age , sport = sport,experience = experience,username = username,password= password,mode = mode)
         user.save()
         return redirect("/home")
     else:

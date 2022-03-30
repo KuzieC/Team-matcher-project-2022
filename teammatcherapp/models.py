@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class User(models.Model):
     name = models.CharField(max_length = 30, default = "", unique= False)
-    postcode = models.CharField(max_length = 10, default = "", unique = False)
+    city = models.CharField(max_length = 20, default = " ", unique = False)
     gender = models.CharField(max_length = 10, default = "", unique= False)
     phone = models.CharField(max_length = 15, default = "", unique= False)
     age = models.IntegerField(null=False)
