@@ -17,7 +17,7 @@ build/
 tests/report/
 migrations/
 root/
-
+venv
 db.sqlite3
 
 .DS_Store
