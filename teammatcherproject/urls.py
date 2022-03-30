@@ -14,8 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+from xml.etree.ElementInclude import include
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from teammatcherapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +28,5 @@ urlpatterns = [
     path('shop/',views.shop),
     path('leaderboard/',views.leaderboard),
     path('register/',views.register, name="register"),
+    path('api/v1/',include('api.urls')),
 ]
