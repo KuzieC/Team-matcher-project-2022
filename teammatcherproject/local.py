@@ -79,7 +79,11 @@ WSGI_APPLICATION = 'teammatcherproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'teams', 
+        'USER': 'postgres', 
+        'PASSWORD': 'chen020905',
+        'HOST': '', 
+        'PORT': '5432',
     }
 }
 
