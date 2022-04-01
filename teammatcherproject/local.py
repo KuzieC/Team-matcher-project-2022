@@ -25,7 +25,7 @@ SECRET_KEY = 'matcher-1bq933i-3f1dqwmtukb75ueaf1ws&l7kml_cd^!s%-3zv%z5t+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,12 +41,16 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'crispy_forms',
     'rest_framework',
+    'rest_framework.authtoken',
     'api',
 ]
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES ': [
-    'rest_framework.permissions.AllowAny ',
-]
+    'rest_framework.permissions.IsAuthenticated ',
+],
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        'rest_framework.authentication.TokenAuthentication',
+    ]
 }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
