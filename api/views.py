@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from teammatcherapp import models
-from api.serializers import UserSerializer
+from api.serializers import UserSerializer,LeaderboardSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 class UserViewSet(viewsets.ModelViewSet):
