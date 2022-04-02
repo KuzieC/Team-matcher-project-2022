@@ -1,6 +1,6 @@
 from django.db import router
 from django.urls import path
-from api.views import UserViewSet
+from api.views import UserViewSet,LeaderboardViewSet
 from rest_framework.routers import DefaultRouter
 
 from teammatcherapp.models import User
