@@ -25,9 +25,9 @@
             <div id="wrap">
                 <div id="content">
                     {%for x in pos%}
-                    <h3 style="text-align:center; display:inline;">{{x.name}} </h3>
-                    <p style="text-align:center">Username: {{x.username}}</p>
-                    <p style="text-align:center">Score: {{x.score}}</p>
+                    <li><h3 style="text-align:left; display:inline;">{{x.name}} </h3></li>
+                    <p style="text-align:left;">Username: {{x.username}}</p>
+                    <p style="text-align:left;">Score: {{x.score}}</p>
                     <br> {%endfor%}
                 </div>
             </div>
