@@ -7,3 +7,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = models.User.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = UserSerializer
+class LeaderboardViewSet(viewsets.ModelViewSet):
+    queryset = models.User.objects.all()
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    serializer_class = LeaderboardSerializer
