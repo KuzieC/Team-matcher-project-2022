@@ -21,17 +21,17 @@
         <br><br><br><br><br>
         <h1>Leader Board</h1>
         <br><br>
-        <ul style="color: white">
+        <ol style="color: white">
             <div id="wrap">
                 <div id="content">
                     {%for x in pos%}
-                    <h3 style="text-align:left; display:inline;">{{x.name}} </h3>
-                    <p style="text-align:left">Username: {{x.username}}</p>
-                    <p style="text-align:left">Score: {{x.score}}</p>
+                    <h3 style="text-align:center; display:inline;">{{x.name}} </h3>
+                    <p style="text-align:center">Username: {{x.username}}</p>
+                    <p style="text-align:center">Score: {{x.score}}</p>
                     <br> {%endfor%}
                 </div>
             </div>
-        </ul> 
+        </ol> 
     </div>
 </body>
 {%endblock%}
