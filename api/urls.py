@@ -6,4 +6,5 @@ from rest_framework.routers import DefaultRouter
 from teammatcherapp.models import User
 router = DefaultRouter()
 router.register('users',UserViewSet,basename = 'users')
+router.register('leaderboardpositions',LeaderboardViewSet,basename = 'leaderboardpositions')
 urlpatterns = router.urls 
