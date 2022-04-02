@@ -30,5 +30,5 @@ urlpatterns = [
     path('leaderboard/',view.leaderboard),
     path('register/',view.register, name="register"),
     path('api/v1/',include('api.urls')),
-    path('api-token-auth/',views.obtain_auth_token,name = 'api-toekn-auth')
+    path('api-token-auth/',views.obtain_auth_token,name = 'api-token-auth')
 ]

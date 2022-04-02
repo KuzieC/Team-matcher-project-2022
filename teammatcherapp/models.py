@@ -16,6 +16,15 @@ class User(models.Model):
         return self.name
     # #picture = models.ImageField()
    
+class LeaderBoardPosition(models.Model):
+    name = models.CharField(max_length = 30, default = "", unique= False)
+    username = models.CharField(max_length = 30, default = "", unique= True)
+    score = models.IntegerField(null=False)
+    def __str__(self):
+        return self.name
+
+
+
 
 # class Mode(models.Model):
 #     title = models.CharField(max_length=10)

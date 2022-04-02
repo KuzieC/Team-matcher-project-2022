@@ -2,7 +2,7 @@ from textwrap import fill
 from urllib import request
 from django.shortcuts import render, redirect
 from.forms import searchdetail
-from.models import User
+from.models import User, LeaderBoardPosition
 from .forms import RegisterForm
 
 # Create your views here.
@@ -29,7 +29,8 @@ def shop(request):
     return render(request,'shop.html')
 
 def leaderboard(request):
-    return render(request,'leaderboard.html')
+    position = LeaderBoardPosition.objects.all().order_by('-score')
+    return render(request,'leaderboard.html', {'pos':position})
 
 def register(response):
     if response.method == "POST":
