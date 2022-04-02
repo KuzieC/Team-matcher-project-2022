@@ -25,7 +25,8 @@
             <div id="wrap">
                 <div id="content">
                     {%for x in pos%}
-                    <li><h3 style="text-align:left; display:inline;">{{x.name}} </h3></li>
+                    <li><h3 style="text-align:left;">  {{x.name}} </h3></li>
+                    <br>
                     <p style="text-align:left;">Username: {{x.username}}</p>
                     <p style="text-align:left;">Score: {{x.score}}</p>
                     <br> {%endfor%}
