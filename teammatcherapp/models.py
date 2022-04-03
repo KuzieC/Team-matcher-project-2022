@@ -6,7 +6,7 @@ class User(models.Model):
     city = models.CharField(max_length = 20, default = " ", unique = False)
     gender = models.CharField(max_length = 10, default = "", unique= False)
     phone = models.CharField(max_length = 15, default = "", unique= False)
-    age = models.IntegerField(null=False)
+    age = models.IntegerField(null=False, default=20)
     sport = models.CharField(max_length = 30, default = "", unique= False)
     experience = models.CharField(max_length = 30, default = "begginer", unique= False) 
     username = models.CharField(max_length = 30, default = "", unique= True)
