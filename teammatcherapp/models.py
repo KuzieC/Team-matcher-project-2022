@@ -19,7 +19,7 @@ class User(models.Model):
 class LeaderBoardPosition(models.Model):
     name = models.CharField(max_length = 30, default = "", unique= False)
     username = models.CharField(max_length = 30, default = "", unique= True)
-    score = models.IntegerField(null=False)
+    score = models.IntegerField(null=False, default = 0)
     def __str__(self):
         return self.name
 
