@@ -34,7 +34,7 @@ def leaderboard(request):
 
 def register(response):
     if response.method == "POST":
-        # form = RegisterForm(response.POST)
+        form = RegisterForm(response.POST)
         name = response.POST['name']
         city = response.POST['city']
         gender = response.POST['gender']
@@ -46,8 +46,9 @@ def register(response):
         password = response.POST['password']
         mode = response.POST['mode']
         user = User(name = name ,city = city,gender = gender,phone = phone,age = age , sport = sport,experience = experience,username = username,password= password,mode = mode)
-        user.save()
-        return redirect("/home")
+        if form.is_valid():
+            user.save()
+            return redirect("/home")
     else:
         form = RegisterForm()
     return render(response, "register.html", {"form":form})
