@@ -13,7 +13,7 @@ def search (request):
             sports = User.objects.filter(sport=filled_form.cleaned_data['sport'])
             mode = sports.filter(mode=filled_form.cleaned_data['mode'])
             city = mode.filter(city=filled_form.cleaned_data['city'])
-            note ='search results for %s in %s' %(filled_form.cleaned_data['sport'], filled_form.cleaned_data['city'],)
+            note ='Search results for %s in %s' %(filled_form.cleaned_data['sport'], filled_form.cleaned_data['city'],)
             new_form=searchdetail()
             return render(request,'searchresult.html',{'sports':sports ,'note':note,'city':city})
     sport = searchdetail(); 
