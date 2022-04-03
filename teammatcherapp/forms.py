@@ -33,6 +33,7 @@ class RegisterForm(forms.ModelForm):
     experience = forms.ChoiceField(label="Experience",choices=[('beginner','beginner'),('intermediate','intermediate'),('advanced','advanced')])
     gender = forms.ChoiceField(label="Gender",choices=[('M','Male'),('F','Female')])
     mode = forms.ChoiceField(label="Mode",choices=[('team','team'),('teammember','teammember'),('compete','compete')])
+    password = forms.CharField(widget=forms.PasswordInput())
     gdpr = forms.BooleanField(label = 'Accept GDPR')
 
 # class RegisterForm(UserCreationForm):
