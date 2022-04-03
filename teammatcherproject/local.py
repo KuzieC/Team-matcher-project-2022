@@ -38,8 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'teammatcherapp',
-    'widget_tweaks',
-    'crispy_forms',
     'rest_framework',
     'rest_framework.authtoken',
     'api',
