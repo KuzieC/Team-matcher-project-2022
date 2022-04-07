@@ -1,0 +1,64 @@
+{%extends "base.html"%}
+
+{%block title%}<title>Team Matcher Profile</title>{%endblock%}
+
+{% block content %}
+<style>
+    #mainNav {
+        text-align: center;
+    }
+    p {
+        text-align: left;
+      }
+
+    ul {
+        text-align: left;
+        display: block;
+      }
+    
+    #wrap {
+        float: left;
+        position: relative;
+        left: 50%;
+        text-align: left;
+    }
+
+    #content {
+        float: left;
+        position: relative;
+        left: -50%;
+        text-align: left;
+    }
+
+    input[type=radio] {
+        width:10px;
+        
+    }
+    label{
+        text-align:left;
+        width: 140px;
+    }
+</style>
+
+
+<br><br><br><br> <br><br>
+<h1>Profile Page</h1>
+{% if user.is_authenticated %}
+   
+    <br><br>
+    <div id="wrap">
+        <div id="content">
+            <p> Hello {{user.username}}</p> 
+            <p>ENTER FORM HERE</p> 
+            <a href= "/accounts/logout/?next=/home/">Log Out</a> 
+        </div>
+    </div>
+    {% else %}
+    <br><br>
+    <div id="wrap">
+        <div id="content">
+            <p>please login</p>  
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

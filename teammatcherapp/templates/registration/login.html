@@ -1,6 +1,6 @@
 {%extends "base.html"%}
 
-{%block title%}<title>Team Matcher Register</title>{%endblock%}
+{%block title%}<title>Team Matcher Login</title>{%endblock%}
 
 {% block content %}
 <style>
@@ -42,18 +42,14 @@
 
 
 <br><br><br><br> <br><br>
-<h1>REGISTER</h1>
-<br>
+<h1>LOG IN</h1>
+{% if user.is_authenticated %}<p> you are already logged in {{user.username}}</p> {% endif %}
+<br><br>
 <div id="wrap">
     <div id="content">
-        <a href = "/accounts/login">Already have an account? Click here to log in</a>
-        <br><br><br>
         <form method="POST">
             {% csrf_token %} {{ form.as_p}} 
-            <p style="width: 400px;">By ticking this box you are agreeing to our privacy policy</p>
-            <p><a class="nav-link" href="/gdpr/" target="_blank">click here to read our privacy policy</a></p>
-            <br>
-            <button type="submit" class="btn btn-success" style = "text-align:left">Register</button>  
+            <button type="submit" class="btn btn-success" style = "text-align:left">Log In</button>  
             <br><br>
     </form>          
     </div>

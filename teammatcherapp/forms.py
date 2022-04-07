@@ -7,6 +7,7 @@ from django.contrib.auth.models import User as u
 
 
 
+
 class searchdetail(forms.ModelForm):
      #modeselect = (('team','team'),('teammember','teammember'),('compete','compete'))
      #mode = forms.ChoiceField(choices = modeselect,widget=forms.RadioSelect)
@@ -36,10 +37,7 @@ class RegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
     gdpr = forms.BooleanField(label = 'Accept GDPR')
 
-# class RegisterForm(UserCreationForm):
-
-#     class Meta:
-#         model = u
-#         fields = ["username", "password1", "password2"]
-
-
+class UserForm(UserCreationForm):
+    class Meta:
+        model = u
+        fields = ('username', 'password1', 'password2')
