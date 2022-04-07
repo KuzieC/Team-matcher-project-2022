@@ -4,7 +4,7 @@ from urllib import request
 from django.shortcuts import render, redirect
 from.forms import searchdetail
 from.models import User, LeaderBoardPosition
-from .forms import RegisterForm, UserForm
+from .forms import RegisterForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User as u
 from django.contrib.auth.hashers import make_password

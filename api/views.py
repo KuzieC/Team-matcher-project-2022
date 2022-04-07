@@ -9,5 +9,5 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 class LeaderboardViewSet(viewsets.ModelViewSet):
     queryset = models.LeaderBoardPosition.objects.all()
-    permission_classes = [DjangoModelPermissions]
+    permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = LeaderboardSerializer

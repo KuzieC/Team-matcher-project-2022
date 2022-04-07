@@ -37,7 +37,4 @@ class RegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
     gdpr = forms.BooleanField(label = 'Accept GDPR')
 
-class UserForm(UserCreationForm):
-    class Meta:
-        model = u
-        fields = ('username', 'password1', 'password2')
+
