@@ -3,7 +3,7 @@ from django.core.validators import RegexValidator
 
 
 userValid = RegexValidator(r'^[0-9a-zA-Z\@.\+\-\_]*$', 'Username must contain letters, digits and @/./+/-/_ only')
-phoneValid = RegexValidator(r'^[0-9]*$', 'Phone number must contain only digits')
+phoneValid = RegexValidator(r'^[0-9]{10,15}$', 'Enter a valid phone number')
 nameValid = RegexValidator(r'^[a-zA-Z\s]*$', 'Name must contain only letters and spaces')
 
 
