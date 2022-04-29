@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from random import choice
 from django import forms
 from.models import User
-from.models import Items
+from.models import shopInfo
 
 
 class searchdetail(forms.ModelForm):
@@ -46,6 +46,6 @@ class RegisterForm(forms.ModelForm):
 
 class ItemsForm(forms.ModelForm):
     class Meta:
-        model = Items
-        fields = ['itemName', 'price', 'description', 'picture', 'foreignKey']
+        model = shopInfo
+        fields = ['image', 'title', 'price', 'contact', 'description']
         #widgets = {'foreignKey': forms.HiddenInput()}

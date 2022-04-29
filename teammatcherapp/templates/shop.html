@@ -9,7 +9,47 @@
         <br><br><br><br><br>
         <h1>Shop</h1>
         <br><br>
-        <p>Coming Soon!</p>   
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for an item">
+        <br><br>
+        <table class ="table table-striped", table id ="myTable">
+            <thead>
+                <th style = color:white>Image</th>
+                <th style = color:white>Title</th>
+                <th style = color:white>Price</th>
+                <th style = color:white>Contact</th>
+            </thead>
+            <tbody>
+                {% for image in images %}
+                <tr>
+                    <td><img src="/{{ BASIC_DIR }}/ }}/{{image.image}}" width="120"/></td>
+                    <td style = color:white>{{image.title}}</td>
+                    <td style = color:white>{{image.price}}</td>
+                    <td style = color:white>{{image.contact}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>   
     </div>
+    <script>
+        function myFunction() {
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }       
+          }
+        }
+        </script>
+        
 </body>
 {%endblock%}

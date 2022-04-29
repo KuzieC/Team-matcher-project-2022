@@ -31,11 +31,16 @@
   <div id="wrap">
     <div id="content">
       <br /><br />
+      {% if user.is_authenticated %}
       <form method="POST" enctype="multipart/form-data">
         {% csrf_token %} {{ items.as_p }}
         <br /><br />
         <button type="submit" class="btn btn-success">Sell</button>
       </form>
+      {%endif%} {% if not user.is_authenticated %}
+      <p>You have to be logged in to sell items!</p>
+      <a href="/register/">Click here to log in or register</a>
+      {%endif%}
     </div>
   </div>
 </body>

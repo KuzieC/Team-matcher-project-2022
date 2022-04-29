@@ -8,7 +8,13 @@ from textwrap import fill
 from urllib import request
 from django.shortcuts import render, redirect
 from.forms import searchdetail
-from.models import User, LeaderBoardPosition, Items
+from.models import User, LeaderBoardPosition, shopInfo
+from .forms import RegisterForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User as u
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth import authenticate, login
+
 
 
 # Create your views here.
@@ -37,7 +43,8 @@ def gdpr(request):
 
 
 def shop(request):
-    return render(request, 'shop.html')
+    allItems = shopInfo.objects.all()
+    return render(request,'shop.html',{'images':allItems})
 
 
 def shopItems(request):

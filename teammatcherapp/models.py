@@ -40,15 +40,16 @@ class LeaderBoardPosition(models.Model):
         return self.name
 
 
-class Items(models.Model):
-    itemName = models.CharField(max_length=30, default="", unique=False)
-    price = models.FloatField(null=False, default="", unique=False)
-    description = models.CharField(max_length=60, default="", unique=False)
-    picture = models.ImageField(null=True, blank=True, upload_to="images/")
-    foreignKey = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
-
+class shopInfo(models.Model):
+    image = models.ImageField(upload_to="media")
+    title = models.CharField(max_length=100)
+    price= models.FloatField(null=False, default=0)
+    contact = models.CharField(max_length = 15, default="", unique = False, validators=[phoneValid])
+    description = models.CharField(max_length=500, default ="")
+    class Meta:
+        db_table = "teams"
     def __str__(self):
-        return self.itemName
+        return self.title
 
 # class Mode(models.Model):
 #     title = models.CharField(max_length=10)
