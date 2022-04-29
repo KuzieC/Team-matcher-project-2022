@@ -46,8 +46,8 @@ class shopInfo(models.Model):
     price= models.FloatField(null=False, default=0)
     contact = models.CharField(max_length = 15, default="", unique = False, validators=[phoneValid])
     description = models.CharField(max_length=500, default ="")
-    def __str__(self):
-        return self.title
+    class Meta:
+        db_table = "teams"
 
 # class Mode(models.Model):
 #     title = models.CharField(max_length=10)
