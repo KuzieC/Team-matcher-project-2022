@@ -8,6 +8,9 @@
     <div class="container" >
         <br><br><br><br><br>
         <h1>Shop</h1>
+        {% if not user.is_authenticated %}
+        <p> Contact deatails are hidden because you are not logged in. Please login to see them. </p>
+        {% endif %}
         <br><br>
         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for an item">
         <br><br>
@@ -25,7 +28,8 @@
                     <td style = color:white>{{i.price}}</td>
                     <td style = color:white>{{i.title}}</td>
                     <td style = color:white>{{i.description}}</td>
-                    <td style = color:white>{{i.contact}} </td>
+                    {% if user.is_authenticated %}<td style = color:white>{{i.contact}}</td>{% endif %}
+                    {% if not user.is_authenticated %}<td style = color:white> </td>{% endif %}
                     
                     {% if i.image %}
                     <td><img src="{{ i.image.url }}" alt=""  width = 100></td>
