@@ -13,18 +13,27 @@
         <br><br>
         <table class ="table table-striped", table id ="myTable">
             <thead>
-                <th style = color:white>Image</th>
+                <th style = color:white>Price(£)</th>
                 <th style = color:white>Title</th>
-                <th style = color:white>Price</th>
+                <th style = color:white>Description</th>
                 <th style = color:white>Contact</th>
+                <th style = color:white>Image</th>
             </thead>
             <tbody>
-                {% for image in images %}
+                {% for i in teammatcherapp %}
                 <tr>
-                    <td><img src="/{{ BASIC_DIR }}/ }}/{{image.image}}" width="120"/></td>
-                    <td style = color:white>{{image.title}}</td>
-                    <td style = color:white>{{image.price}}</td>
-                    <td style = color:white>{{image.contact}}</td>
+                    <td style = color:white>{{i.price}}</td>
+                    <td style = color:white>{{i.title}}</td>
+                    <td style = color:white>{{i.description}}</td>
+                    <td style = color:white>{{i.contact}} </td>
+                    
+                    {% if i.image %}
+                    <td><img src="{{ i.image.url }}" alt=""  width = 100></td>
+
+                    {% endif %}
+                    <td><img src="{% static 'images/teammatcherapp.png' % }" alt=""  width = 100></td>
+
+
                 </tr>
                 {% endfor %}
             </tbody>
