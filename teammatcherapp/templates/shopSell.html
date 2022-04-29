@@ -1,0 +1,42 @@
+{%extends "base.html"%} {%block title%}<title>Team Matcher Sell</title
+>{%endblock%} {% block content%}
+
+<style>
+  p {
+    text-align: left;
+  }
+
+  #wrap {
+    float: left;
+    position: relative;
+    left: 50%;
+    text-align: left;
+  }
+
+  #content {
+    float: left;
+    position: relative;
+    left: -50%;
+  }
+
+  label {
+    text-align: left;
+    width: 140px;
+  }
+</style>
+
+<body>
+  <br /><br /><br /><br /><br /><br />
+  <h1>Sell an item</h1>
+  <div id="wrap">
+    <div id="content">
+      <br /><br />
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %} {{ items.as_p }}
+        <br /><br />
+        <button type="submit" class="btn btn-success">Sell</button>
+      </form>
+    </div>
+  </div>
+</body>
+{%endblock%}

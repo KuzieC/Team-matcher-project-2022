@@ -1,76 +1,122 @@
 {%load static%}
 
-
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <script src="{%static 'bootstrap/js/bootstrap.min.js'%}"></script>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    {%block title%}<title>Team Matcher</title>{%endblock%}
-    <link rel="icon" href={%static 'img/football.png'%}>
-    <link rel="stylesheet " href="{%static 'bootstrap/css/bootstrap.min.css'%}">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    {%block title%}
+    <title>Team Matcher</title>
+    {%endblock%} <link rel="icon" href={%static 'img/football.png'%}>
+    <link
+      rel="stylesheet "
+      href="{%static 'bootstrap/css/bootstrap.min.css'%}"
+    />
     <!-- <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" type="text/css"> -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
-    <link rel="stylesheet " href="{%static 'fonts/font-awesome.min.css'%}">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Kaushan+Script"
+    />
+    <link rel="stylesheet " href="{%static 'fonts/font-awesome.min.css'%}" />
     <style>
-        body {
-            background-color: black;
-        }
-        
-        h1 {
-            color: white;
-            text-align: center;
-        }
-        
-        h2 {
-            color: white;
-            text-align: center;
-        }
-        
-        h3 {
-            color: white;
-            text-align: center;
-        }
-        
-        div {
-            color: white;
-            text-align: center;
-        }
-        
-        p {
-            color: white;
-            text-align: center;
-        }
-    </style>
-</head>
+      body {
+        background-color: black;
+      }
 
-<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="54" style="--bs-body-bg: #000000;">
-    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#page-top">TeamMatcher</a>
-        <button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i>
+      h1 {
+        color: white;
+        text-align: center;
+      }
+
+      h2 {
+        color: white;
+        text-align: center;
+      }
+
+      h3 {
+        color: white;
+        text-align: center;
+      }
+
+      div {
+        color: white;
+        text-align: center;
+      }
+
+      p {
+        color: white;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body
+    id="page-top"
+    data-bs-spy="scroll"
+    data-bs-target="#mainNav"
+    data-bs-offset="54"
+    style="--bs-body-bg: #000000"
+  >
+    <nav
+      class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark"
+      id="mainNav"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#page-top">TeamMatcher</a>
+        <button
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarResponsive"
+          class="navbar-toggler navbar-toggler-right"
+          type="button"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fa fa-bars"></i>
         </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto text-uppercase"  style = "text-align: center">
-                    <li class="nav-item"><a class="nav-link" href="/home/">home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/search/">search</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/shop/">shop</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/leaderboard/">leaderboard</a></li>
-                    {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href="/profile/">{{user.username}}'s Account</a></li>
-                    {% else %}
-                        <li class="nav-item"><a class="nav-link" href="/register/">register</a></li>
-                    {% endif %}
-                    <!-- <li class="nav-item"><a class="nav-link" href="#team">Team</a></li> -->
-                    <li class="nav-item"><a class="nav-link" href="/gdpr">Privacy Policy</a></li>
-                </ul>
-            </div>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul
+            class="navbar-nav ms-auto text-uppercase"
+            style="text-align: center"
+          >
+            <li class="nav-item"><a class="nav-link" href="/home/">home</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="/search/">search</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="/shop/">shop</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="/shop/sell/">Sell</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/leaderboard/">leaderboard</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="/profile/"
+                >{{user.username}}'s Account</a
+              >
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="/register/">register</a>
+            </li>
+            {% endif %}
+            <!-- <li class="nav-item"><a class="nav-link" href="#team">Team</a></li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="/gdpr">Privacy Policy</a>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
     {%block content%}{%endblock%}
-</body>
-
+  </body>
 </html>
