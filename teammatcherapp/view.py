@@ -43,8 +43,9 @@ def gdpr(request):
 
 
 def shop(request):
-    allItems = shopInfo.objects.all()
-    return render(request,'shop.html',{'images':allItems})
+    teammatcherapp = shopInfo.objects.all()
+    context = {"teammatcherapp":teammatcherapp}
+    return render(request,'shop.html',context)
 
 
 def shopItems(request):
