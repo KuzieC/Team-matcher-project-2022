@@ -13,4 +13,9 @@ class LeaderboardSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.LeaderBoardPosition
         fields = '__all__'
-        
+
+class ItemsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= models.shopInfo
+        fields = ['title','price','contact','description']
+
