@@ -41,7 +41,7 @@ class LeaderBoardPosition(models.Model):
 
 
 class shopInfo(models.Model):
-    image = models.ImageField(upload_to="media")
+    image = models.ImageField(upload_to="static")
     title = models.CharField(max_length=100)
     price= models.FloatField(null=False, default=0)
     contact = models.CharField(max_length = 15, default="", unique = False, validators=[phoneValid])
