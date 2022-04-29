@@ -12,6 +12,7 @@ sqlparse==0.4.2
 Pillow==7.0.0
 
 tzdata==2022.1
+  
 
 
 
