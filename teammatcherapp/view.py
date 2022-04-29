@@ -82,7 +82,7 @@ def register(response):
             user.save()
             user2.save()
             login(response, user2)
-            return redirect("/home")
+            return redirect("/home/")
 
     else:
         form = RegisterForm()
