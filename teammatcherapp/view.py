@@ -10,7 +10,7 @@ from urllib import request
 from django.shortcuts import render, redirect
 from.forms import searchdetail
 from.models import User, LeaderBoardPosition, shopInfo
-from .forms import RegisterForm , EditProfileForm
+from .forms import RegisterForm , EditProfileForm, EditLeaderboardForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User as u
 from django.contrib.auth.hashers import make_password
@@ -73,7 +73,8 @@ def profile(request):
 
 
 def leaderboard(request):
-    position = LeaderBoardPosition.objects.all().order_by('-score')
+    position = LeaderBoardPosition.objects.exclude(score=0).order_by('-score')
+    #p2 = position.filter(score > 0)
     return render(request, 'leaderboard.html', {'pos': position})
 
 
@@ -81,6 +82,7 @@ def register(response):
     if response.method == "POST":
         form = RegisterForm(response.POST)
         form2 = UserCreationForm(response.POST)
+        form3 = EditLeaderboardForm(response.POST)
         name = response.POST['name']
         city = response.POST['city']
         gender = response.POST['gender']
@@ -95,9 +97,11 @@ def register(response):
                     experience=experience, username=username, password=password, mode=mode)
         hashed_pwd = make_password(password)
         user2 = u(username=username, password=hashed_pwd)
+        lb = LeaderBoardPosition(username=username, name=name, score = -1)
         if form.is_valid():
             user.save()
             user2.save()
+            lb.save()
             login(response, user2)
             return redirect("/home/")
 
@@ -147,6 +151,17 @@ class ProfileView(LoginRequiredMixin,UserPassesTestMixin):
             if request.user.is_authenticated():
                 raise Http404("This is not your account to edit")
 
+
+def EditScoreView(request):
+    username = request.user.username
+    instance = get_object_or_404(LeaderBoardPosition, username=username)
+    s = instance.score
+    form = EditLeaderboardForm(request.POST or None, instance=instance, s=s)
+
+    if form.is_valid():
+        form.save()
+        return redirect('/leaderboard/')
+    return render(request, 'score_update_form.html', {'form': form}) 
 
 
 

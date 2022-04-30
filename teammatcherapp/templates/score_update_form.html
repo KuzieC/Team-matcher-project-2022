@@ -1,0 +1,63 @@
+{%extends "base.html"%}
+
+{%block title%}<title>Team Matcher Add Score</title>{%endblock%}
+
+{% block content %}
+<style>
+    #mainNav {
+        text-align: center;
+    }
+    p {
+        text-align: left;
+      }
+
+    ul {
+        text-align: left;
+        display: block;
+      }
+    
+    #wrap {
+        float: left;
+        position: relative;
+        left: 50%;
+        text-align: left;
+    }
+
+    #content {
+        float: left;
+        position: relative;
+        left: -50%;
+        text-align: left;
+    }
+
+  
+    label{
+        padding-right: 20px;
+    }
+</style>
+
+
+<br><br><br><br> <br><br>
+<h1>Update Score</h1>
+
+   
+    <br><br>
+    <div id="wrap">
+        <div id="content">
+            {% if not user.is_authenticated %}
+            <a href= "/register/">You are not logged in. Click here to login or register.</a>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <h2>Hello {{user.username}}</h2> 
+            <br>
+            <form method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <br>
+                <input type="submit" value="Update"> 
+            </form> 
+            {% endif %}
+        </div>
+    </div>
+   
+
+{% endblock %}

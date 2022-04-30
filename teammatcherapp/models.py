@@ -39,6 +39,10 @@ class LeaderBoardPosition(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        self.score = self.score +1	
+        super(LeaderBoardPosition, self).save(*args, **kwargs)
+
 
 class shopInfo(models.Model):
     image = models.ImageField(upload_to="static")

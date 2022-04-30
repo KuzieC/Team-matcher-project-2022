@@ -4,6 +4,7 @@ from random import choice
 from django import forms
 from.models import User
 from.models import shopInfo
+from.models import LeaderBoardPosition
 
 
 class searchdetail(forms.ModelForm):
@@ -62,3 +63,14 @@ class EditProfileForm(forms.ModelForm):
         'beginner', 'beginner'), ('intermediate', 'intermediate'), ('advanced', 'advanced')]) 
    mode = forms.ChoiceField(label="Mode", choices=[(
         'team', 'team'), ('teammember', 'teammember'), ('compete', 'compete')])
+
+class EditLeaderboardForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        self._s = kwargs.pop('s', None)
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        model = LeaderBoardPosition
+        fields = []
+    
+    score = forms.BooleanField(label='Click to confirm you have won a competitive game')

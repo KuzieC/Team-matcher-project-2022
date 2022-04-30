@@ -38,6 +38,7 @@ urlpatterns = [
     path('shop/sell/', view.shopItems),
     path('leaderboard/', view.leaderboard),
     path('register/', view.register, name="register"),
+    path('addScore/', view.EditScoreView),
     path('api/v1/', include('api.urls')),
     path('api-token-auth/', views.obtain_auth_token, name='api-token-auth'),
     path('accounts/', include("django.contrib.auth.urls")),

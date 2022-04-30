@@ -23,7 +23,10 @@
         <br><br><br><br><br>
         <h1>Leaderboard</h1>
         <p>The score shows how many times each user has won against another player or team they matched with using compete mode</p>
-        <br>
+        {% if user.is_authenticated %}
+        <a href = "/addScore/">click here if you have won a game and would like to update your score</a>
+        {% endif %}
+        <br><br>
         <ol style="color: white; font-size: 30pt;">
             <div id="wrap">
                 <div id="content">
