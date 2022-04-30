@@ -25,10 +25,10 @@ class User(models.Model):
         max_length=30, default="", unique=True, validators=[userValid])
     password = models.CharField(max_length=30, default="", unique=False)
     mode = models.CharField(max_length=30, default="", unique=False)
+    
 
     def __str__(self):
         return self.name
-    # #picture = models.ImageField()
 
 
 class LeaderBoardPosition(models.Model):

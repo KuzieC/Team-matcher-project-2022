@@ -23,6 +23,9 @@ from django.conf import settings
 from rest_framework.authtoken import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import reverse_lazy
+from django.contrib.auth import views as auth_view
+from teammatcherapp.view import ProfileView 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,8 +41,12 @@ urlpatterns = [
     path('api/v1/', include('api.urls')),
     path('api-token-auth/', views.obtain_auth_token, name='api-token-auth'),
     path('accounts/', include("django.contrib.auth.urls")),
-    path('profile/', view.profile),
     path('shop',view.shop),
+    path('profile/<user>/edit/password/',auth_view.PasswordChangeView.as_view(template_name='change-password.html',success_url=reverse_lazy(view.home))),
+    path('profile/<user>/',ProfileView.detail_view),
+    path('profile/<user>/edit/',ProfileView.update_view),
+    path('accounts/profile/',view.home),
+   
 ]
 
 if settings.DEBUG:

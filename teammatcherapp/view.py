@@ -2,18 +2,27 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User as u
 from django.contrib.auth.forms import UserCreationForm
-from .forms import RegisterForm, ItemsForm
+from django.http import Http404
+from .forms import EditProfileForm, RegisterForm, ItemsForm
 import imp
 from textwrap import fill
 from urllib import request
 from django.shortcuts import render, redirect
 from.forms import searchdetail
 from.models import User, LeaderBoardPosition, shopInfo
-from .forms import RegisterForm
+from .forms import RegisterForm , EditProfileForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User as u
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.mixins import LoginRequiredMixin ,UserPassesTestMixin
+from django.urls import reverse_lazy
+#from django.views.generic.edit import UpdateView
+#from django.views.generic import DetailView
+#from teammatcherapp import view
+from django.shortcuts import (get_object_or_404,
+                              render,
+                              HttpResponseRedirect)
 
 
 
@@ -96,6 +105,52 @@ def register(response):
         form = RegisterForm()
         form2 = UserCreationForm()
     return render(response, "register.html", {"form": form})
+
+
+
+#class UserView(LoginRequiredMixin,DetailView):
+   # model = User
+    #template_name = "view_profile.html"
+
+
+class ProfileView(LoginRequiredMixin,UserPassesTestMixin):
+       
+   #    model = User
+   #    fields = ['name','city','phone','sport','experience','mode']
+   #    template_name_suffix = '_update_form'
+    #   success_url = reverse_lazy(view.home)
+
+
+    def detail_view(request,user):
+        context={}
+        context["user"] = get_object_or_404(User,username=user)
+    
+
+        return render(request , "view_profile.html",context)
+
+    def update_view(request,user):
+        context={}
+        obj = get_object_or_404(User,username=user)
+        form = EditProfileForm(request.POST or None, instance = obj)
+        if form.is_valid():
+         form.save()
+         return HttpResponseRedirect("/profile/"+user+"/")
+        context["form"] = form
+        return render(request,"user_update_form.html",context)
+
+    def test_func(request,user) :
+        x = request.user
+        y = user
+        if x == y :
+            return True
+        else:
+            if request.user.is_authenticated():
+                raise Http404("This is not your account to edit")
+
+
+
+
+
 
 # def register(response):
 #    if response.method == "POST":

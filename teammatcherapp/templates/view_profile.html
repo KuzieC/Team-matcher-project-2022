@@ -1,0 +1,74 @@
+{%extends "base.html"%}
+
+{%block title%}<title>Team Matcher Profile</title>{%endblock%}
+
+{% block content %}
+<style>
+    #mainNav {
+        text-align: center;
+    }
+    p {
+        text-align: left;
+      }
+
+    ul {
+        text-align: left;
+        display: block;
+      }
+    
+    #wrap {
+        float: left;
+        position: relative;
+        left: 50%;
+        text-align: left;
+    }
+
+    #content {
+        float: left;
+        position: relative;
+        left: -50%;
+        text-align: left;
+    }
+
+    input[type=radio] {
+        width:10px;
+        
+    }
+    label{
+        text-align:left;
+        width: 140px;
+    }
+</style>
+
+
+<br><br><br><br> <br><br>
+<h1>Profile Page</h1>
+{% if user%}
+   
+    <br><br>
+    <div id="wrap">
+        <div id="content">
+            <h3> Hello {{user.username}}     </h3>
+            <p>                                   </p>
+            <a href= "/accounts/logout/?next=/home/">Log Out</a>
+            <p>                                   </p>
+            <p> Name: {{user.name}}</p>
+            <p> Age: {{user.age}}</p>
+            <p> City: {{user.city}}</p>
+            <p> Sport: {{user.sport}}</p>
+            <p> Experience: {{user.experience}}</p> 
+            <p> Mode: {{user.mode}}</p>
+            <p>                                   </p>
+            <a href= "edit/">Edit profile</a>
+            
+        </div>
+    </div>
+    {% else %}
+    <br><br>
+    <div id="wrap">
+        <div id="content">
+            <p>please login</p>  
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

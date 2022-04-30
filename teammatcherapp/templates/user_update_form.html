@@ -1,0 +1,64 @@
+{%extends "base.html"%}
+
+{%block title%}<title>Team Matcher Profile</title>{%endblock%}
+
+{% block content %}
+<style>
+    #mainNav {
+        text-align: center;
+    }
+    p {
+        text-align: left;
+      }
+
+    ul {
+        text-align: left;
+        display: block;
+      }
+    
+    #wrap {
+        float: left;
+        position: relative;
+        left: 50%;
+        text-align: left;
+    }
+
+    #content {
+        float: left;
+        position: relative;
+        left: -50%;
+        text-align: left;
+    }
+
+    input[type=radio] {
+        width:10px;
+        
+    }
+    label{
+        text-align:left;
+        width: 140px;
+    }
+</style>
+
+
+<br><br><br><br> <br><br>
+<h1>Profile Page</h1>
+
+   
+    <br><br>
+    <div id="wrap">
+        <div id="content">
+            <p> Hello {{user.username}}</p> 
+            <form method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Update"> 
+            </form> 
+            <p>                                 </p>
+            <a href= "/profile/<pk>/edit/password/">Change Password</a>
+            <p>                                 </p>
+            <a href= "/accounts/logout/?next=/home/">Log Out</a> 
+        </div>
+    </div>
+   
+
+{% endblock %}
