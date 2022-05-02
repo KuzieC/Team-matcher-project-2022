@@ -48,13 +48,14 @@
     <br><br>
     <div id="wrap">
         <div id="content">
-            <p> Hello {{user.username}}</p> 
+            <h3> Hello {{user.username}}     </h3> 
+            <p>                                   </p>
             <form method="post">{% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" value="Update"> 
             </form> 
             <p>                                 </p>
-            <a href= "/profile/<pk>/edit/password/">Change Password</a>
+            <a href= "/profile/edit/password/">Change Password</a>
             <p>                                 </p>
             <a href= "/accounts/logout/?next=/home/">Log Out</a> 
         </div>
