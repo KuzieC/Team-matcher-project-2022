@@ -43,9 +43,9 @@ urlpatterns = [
     path('api-token-auth/', views.obtain_auth_token, name='api-token-auth'),
     path('accounts/', include("django.contrib.auth.urls")),
     path('shop',view.shop),
-    path('profile/<user>/edit/password/',auth_view.PasswordChangeView.as_view(template_name='change-password.html',success_url=reverse_lazy(view.home))),
-    path('profile/<user>/',ProfileView.detail_view),
-    path('profile/<user>/edit/',ProfileView.update_view),
+    path('profile/edit/password/',auth_view.PasswordChangeView.as_view(template_name='change-password.html',success_url=reverse_lazy(view.home))),
+    path('profile/',ProfileView.detail_view),
+    path('profile/edit/',ProfileView.update_view),
     path('accounts/profile/',view.home),
    
 ]
