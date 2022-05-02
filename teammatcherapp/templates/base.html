@@ -98,10 +98,10 @@
             <li class="nav-item">
               <a class="nav-link" href="/leaderboard/">leaderboard</a>
             </li>
-            {% if user.is_authenticated %}
+            {% if not user.is_anonymous %}
             <li class="nav-item">
-              <a class="nav-link" href= /profile/{{user.username}}/
-                >{{user}}'s Account</a
+              <a class="nav-link" href= "/profile/"
+                >{{user.username}}'s Account</a
               >
             </li>
             {% else %}
