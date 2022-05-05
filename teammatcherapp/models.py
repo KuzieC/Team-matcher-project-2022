@@ -50,6 +50,7 @@ class shopInfo(models.Model):
     price= models.FloatField(null=False, default=0)
     contact = models.CharField(max_length = 15, default="", unique = False, validators=[phoneValid])
     description = models.CharField(max_length=500, default ="")
+    owner = models.ForeignKey('User', on_delete=models.CASCADE)
     
 
 # class Mode(models.Model):

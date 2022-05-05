@@ -57,7 +57,14 @@ def shop(request):
 def shopItems(request):
     if request.method == "POST":
         items = ItemsForm(request.POST, request.FILES)
+        l = request.user.username
         if items.is_valid():
+            o = User.objects.filter(username=l)
+
+            instance = items.save(commit=False)
+            instance.owner = o.first()
+            instance.save()
+
             items.save()
             return redirect("/home/")
     else:
