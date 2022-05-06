@@ -12,6 +12,16 @@ class LeaderboardViewSet(viewsets.ModelViewSet):
     queryset = models.LeaderBoardPosition.objects.all()
     permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     serializer_class = LeaderboardSerializer
+    def get_queryset(self, *args, **kwargs):
+        owner_id = self.kwargs.get("user_pk")
+        if (not owner_id == None):
+            try:
+                owner = models.User.objects.get(id=owner_id)
+                return self.queryset.filter(username=owner.username)
+            except models.User.DoesNotExist:
+                raise Http404("User with that id does not exist")
+        else:
+            return self.queryset
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = models.shopInfo.objects.all()
     permission_classes = [DjangoModelPermissions]

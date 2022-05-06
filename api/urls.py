@@ -12,4 +12,5 @@ urlpatterns = [
     path('', include(router.urls)),
     re_path(r'^users/(?P<user_pk>\d+)/items/?$', ItemViewSet.as_view({'get':'list'}), name='user-items-list'),
     re_path(r'^users/(?P<user_pk>\d+)/items/(?P<pk>\d+)/?$', ItemViewSet.as_view({'get':'retrieve'}), name='user-item-detail'),
+    re_path(r'^users/(?P<user_pk>\d+)/leaderboardpositions/?$', LeaderboardViewSet.as_view({'get':'list'}), name='user-leaderboard-list'),
     ]
